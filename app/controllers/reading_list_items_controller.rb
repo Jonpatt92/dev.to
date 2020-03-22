@@ -4,6 +4,7 @@ class ReadingListItemsController < ApplicationController
     @reading_list_items_index = true
     # more than one route ends in this index action, set_view checks to see if the request is for reading list or [archived]reading list
     set_view
+    # grabs algolia search key from hidden file to pass through erb to javascript file
     generate_algolia_search_key
   end
 
@@ -25,6 +26,7 @@ class ReadingListItemsController < ApplicationController
     )
   end
 
+  # checks params before setting @view that is then passed through erb to javascript file to determine what content to render to view
   def set_view
     @view = if params[:view] == "archive"
               "archived"
