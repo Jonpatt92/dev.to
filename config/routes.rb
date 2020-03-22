@@ -362,8 +362,8 @@ Rails.application.routes.draw do
 
   get "/pod", to: "podcast_episodes#index"
   get "/podcasts", to: redirect("pod")
-  get "/readinglist" => "reading_list_items#index"
-  get "/readinglist/:view" => "reading_list_items#index", :constraints => { view: /archive/ }
+  get "/readinglist" => "reading_list_items#index" # Reading list index page where collections are viewed and saved/bookmarked articles will be displayed
+  get "/readinglist/:view" => "reading_list_items#index", :constraints => { view: /archive/ } # Alternative reading list Index page that shows archived articles
 
   get "/feed" => "articles#feed", :as => "feed", :defaults => { format: "rss" }
   get "/feed/tag/:tag" => "articles#feed",
@@ -409,7 +409,7 @@ Rails.application.routes.draw do
   get "/:username/:slug/stats" => "articles#stats"
   get "/:username/:view" => "stories#index",
       :constraints => { view: /comments|moderate|admin/ }
-  get "/:username/:slug" => "stories#show"
+  get "/:username/:slug" => "stories#show" # Show page for an Article, also where you can bookmark or add it to a collection
   get "/:username" => "stories#index"
 
   root "stories#index"
