@@ -18,7 +18,7 @@
 <% end %>
 
 <div class="home">
-  <div class="item-list-container" id="reading-list" data-algolia-key="<%= @secured_algolia_key %>" data-view="<%= @view %>">
+  <div class="item-list-container" id="reading-list" data-algolia-key="<%= @secured_algolia_key %>" data-view="<%= @view %>"> <!-- Hands @view and @algolia_key to javascript, articles are displayed inside this div -->
   </div>
 </div>
-<%= javascript_pack_tag "readingList", defer: true %>
+<%= javascript_pack_tag "readingList", defer: true %> <!-- Loads Preact file -->
