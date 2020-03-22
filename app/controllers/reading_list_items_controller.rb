@@ -1,6 +1,8 @@
 class ReadingListItemsController < ApplicationController
   def index
+    # used in _styles.html.erb
     @reading_list_items_index = true
+    # more than one route ends in this index action, set_view checks to see if the request is for reading list or [archived]reading list
     set_view
     generate_algolia_search_key
   end
