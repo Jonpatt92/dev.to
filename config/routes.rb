@@ -362,6 +362,7 @@ Rails.application.routes.draw do
 
   get "/pod", to: "podcast_episodes#index"
   get "/podcasts", to: redirect("pod")
+  # route that leads user to view their readinglist
   get "/readinglist" => "reading_list_items#index"
   get "/readinglist/:view" => "reading_list_items#index", :constraints => { view: /archive/ }
 
@@ -409,9 +410,12 @@ Rails.application.routes.draw do
   get "/:username/:slug/stats" => "articles#stats"
   get "/:username/:view" => "stories#index",
       :constraints => { view: /comments|moderate|admin/ }
+  # route that sends a user to view an article, note: add article to reading list
   get "/:username/:slug" => "stories#show"
+  # route user to stories index(home page)
   get "/:username" => "stories#index"
 
+  # route user initial session(home page) to stories index(home page), note: reading list redirect
   root "stories#index"
 end
 
