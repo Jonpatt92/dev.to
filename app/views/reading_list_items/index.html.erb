@@ -18,7 +18,9 @@
 <% end %>
 
 <div class="home">
+  <%# passes algolia_key and @view to javascript %>
   <div class="item-list-container" id="reading-list" data-algolia-key="<%= @secured_algolia_key %>" data-view="<%= @view %>">
   </div>
 </div>
+<%# loads file with preact to render rest of view, app/javascript/readingList/readingList.jsx %>
 <%= javascript_pack_tag "readingList", defer: true %>
