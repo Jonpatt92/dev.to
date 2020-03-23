@@ -60,8 +60,11 @@ export function clearSelectedTags(event) {
 
 // Perform the initial search
 export function performInitialSearch({
+  // passed from readingList, containerId: 'reading-list'
   containerId,
+  // passed from readingList, indexName: 'SecuredReactions'
   indexName,
+  // options: hitsPerPage, filters: status:${statusView}
   searchOptions = {},
 }) {
   const component = this;
@@ -69,6 +72,7 @@ export function performInitialSearch({
 
   const index = setupAlgoliaIndex({ containerId, indexName });
 
+  // searching algolia for articles related to readinglist
   index.search('', searchOptions).then(result => {
     component.setState({
       items: result.hits,
