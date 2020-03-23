@@ -1,7 +1,7 @@
 class ReadingListItemsController < ApplicationController
   def index
-    @reading_list_items_index = true
-    set_view
+    @reading_list_items_index = true # Used for styling
+    set_view # Determines if articles shown are archived or valid based on parameters, passed on as @view
     generate_algolia_search_key
   end
 
