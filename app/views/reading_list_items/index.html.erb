@@ -18,9 +18,9 @@
 <% end %>
 
 <div class="home">
-  <%# passes algolia_key and @view to view %>
+  <%# passes @secured_algolia_key and @view through html data tag, the variables are then able to be accessed in js files%>
   <div class="item-list-container" id="reading-list" data-algolia-key="<%= @secured_algolia_key %>" data-view="<%= @view %>">
   </div>
 </div>
-<%# loads file with preact to render rest of view, app/javascript/readingList/readingList.jsx %>
+<%# loads pack/file readingList.jsx that then imports preact to render rest of view, app/javascript/packs/readingList.jsx %>
 <%= javascript_pack_tag "readingList", defer: true %>
