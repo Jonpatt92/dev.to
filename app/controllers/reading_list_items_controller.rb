@@ -4,7 +4,7 @@ class ReadingListItemsController < ApplicationController
     @reading_list_items_index = true
     # more than one route ends in this index action, set_view checks to see if the request is for reading list or [archived]reading list
     set_view
-    # grabs algolia search key from hidden file to pass through erb to javascript file
+    # grabs algolia search key from hidden file to pass through html data tag in erb file
     generate_algolia_search_key
   end
 
@@ -19,6 +19,7 @@ class ReadingListItemsController < ApplicationController
 
   private
 
+  # grabs key from application.yml file to pass through html data tag, algolia search happens in javascript files
   def generate_algolia_search_key
     params = { filters: "viewable_by:#{session_current_user_id}" }
     @secured_algolia_key = Algolia.generate_secured_api_key(
