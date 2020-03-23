@@ -2,6 +2,8 @@ import { h, Component } from 'preact';
 import { PropTypes } from 'preact-compat';
 import debounce from 'lodash.debounce';
 
+// defaultState and performInitialSearch both relate to loading the content required
+// to print reading list content to the screen
 import {
   defaultState,
   loadNextPage,
@@ -11,6 +13,7 @@ import {
   toggleTag,
   clearSelectedTags,
 } from '../searchableItemList/searchableItemList';
+// ItemListItem returns html to display article title and details in list format
 import { ItemListItem } from '../src/components/ItemList/ItemListItem';
 import { ItemListItemArchiveButton } from '../src/components/ItemList/ItemListItemArchiveButton';
 import { ItemListLoadMoreButton } from '../src/components/ItemList/ItemListLoadMoreButton';
@@ -30,12 +33,15 @@ const FilterText = ({ selectedTags, query, value }) => {
     </h1>
   );
 };
-
+// expose class ReadingList that inherits from preact component
 export class ReadingList extends Component {
   constructor(props) {
     super(props);
 
     const { availableTags, statusView } = this.props;
+    // sets default state, this also makes sure the page does not error out
+    // for example, running .map on something that is null would error the page
+    // default state can set a variable to a blank array instead of null
     this.state = defaultState({ availableTags, archiving: false, statusView });
 
     // bind and initialize all shared functions
@@ -43,15 +49,20 @@ export class ReadingList extends Component {
       leading: true,
     });
     this.loadNextPage = loadNextPage.bind(this);
+    // follow trail, .performInitialSearch fetchs ReadingList data from algolia
+    // these next 4 lines are just rebinding what was imported
     this.performInitialSearch = performInitialSearch.bind(this);
     this.search = search.bind(this);
     this.toggleTag = toggleTag.bind(this);
     this.clearSelectedTags = clearSelectedTags.bind(this);
   }
 
+  // typically where preact gathers all data to be used in class
   componentDidMount() {
     const { hitsPerPage, statusView } = this.state;
-
+    // performInitialSearch is imported from searchableItemList
+    // retrieves data from aloglia
+    // retrieves initial articles' details to display within reading list
     this.performInitialSearch({
       containerId: 'reading-list',
       indexName: 'SecuredReactions',
@@ -62,6 +73,8 @@ export class ReadingList extends Component {
     });
   }
 
+  // event that reruns search to display articles within readinglist
+  // adds functionality to add/remove from readinglist without leaving page
   toggleStatusView = event => {
     event.preventDefault();
 
@@ -77,7 +90,7 @@ export class ReadingList extends Component {
 
     // empty items so that changing the view will start from scratch
     this.setState({ statusView: newStatusView, items: [] });
-
+    // refreshes articles to display within reading list from new algolia search
     this.search(query, {
       page: 0,
       tags: selectedTags,
@@ -174,9 +187,14 @@ export class ReadingList extends Component {
     const isStatusViewValid = this.statusViewValid();
 
     const archiveButtonLabel = isStatusViewValid ? 'archive' : 'unarchive';
+    // this is where the articles to be rendered to readinglist are set
     const itemsToRender = items.map(item => {
       return (
+        // each item is an article to be displayed to the reading list
+        // ItemListItem returns an article properly imbedded in html
+        // to be displayed to the view
         <ItemListItem item={item}>
+          {/* adds button functionality for 'archive' found on each article item within reading list */}
           <ItemListItemArchiveButton
             text={archiveButtonLabel}
             onClick={e => this.toggleArchiveStatus(e, item)}
@@ -192,6 +210,7 @@ export class ReadingList extends Component {
     ) : (
       ''
     );
+    // this is the return of html to be rendered to the view
     return (
       <div className="home item-list">
         <div className="side-bar">
@@ -224,6 +243,8 @@ export class ReadingList extends Component {
             />
 
             <div className="status-view-toggle">
+              {/* adds link to switch back and forth between archive and nonarchived */}
+              {/* calls toggleStatusView to refresh page with correct statusView */}
               <a
                 href={READING_LIST_ARCHIVE_PATH}
                 onClick={e => this.toggleStatusView(e)}
@@ -242,6 +263,7 @@ export class ReadingList extends Component {
               {` (${totalCount > 0 ? totalCount : 'empty'})`}
             </div>
             <div>
+              {/* Articles' Titles and details are rendered */}
               {items.length > 0 ? itemsToRender : this.renderEmptyItems()}
             </div>
           </div>
