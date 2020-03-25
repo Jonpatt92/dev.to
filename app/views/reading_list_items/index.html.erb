@@ -20,5 +20,27 @@
 <div class="home">
   <div class="item-list-container" id="reading-list" data-algolia-key="<%= @secured_algolia_key %>" data-view="<%= @view %>">
   </div>
+
+  <div class="item-list-container">
+    <div class="side-bar">
+    </div>
+    <div class="items-container">
+      <div class="results results--loaded">
+        <div class="results-header">
+          Your Collections
+        </div>
+        <% @collections.each do |collection| %>
+          <div class="item-wrapper">
+            <div class="item"> <!-- This will be an <a class="item" href=""> tag linking to collection show page -->
+              <div class="item-title">
+                <%= collection %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
 <%= javascript_pack_tag "readingList", defer: true %>
