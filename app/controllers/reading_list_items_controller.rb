@@ -3,7 +3,7 @@ class ReadingListItemsController < ApplicationController
     @reading_list_items_index = true
     set_view
     generate_algolia_search_key
-    @collections = ["A collection of cats", "A collection of rusty bicycles"]
+    @collections = current_user.collections
   end
 
   def update
