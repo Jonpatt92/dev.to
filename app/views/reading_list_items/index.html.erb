@@ -29,17 +29,17 @@
           Your Collections
         </div>
         <% @collections.each do |collection| %>
+        <div class="item-wrapper">
+          <%= button_to "[+] Add Collection", "/", class: "collection-add-button" %>
+        </div>
           <div class="item-wrapper" id="collections-item">
-            <a class="item" href="/<%=current_user.username%>/collections/<%=collection.id%>%"> 
+            <a class="item" href="/<%= current_user.username %>/collections/<%= collection.id %>%">
               <div class="item-title">
                 <%= collection.slug %>
               </div>
             </a>
           </div>
         <% end %>
-        <div class="item-wrapper">
-          <%= button_to "[+] Add Collection", "/", id: "collections-add-btn" %>
-        </div>
       </div>
     </div>
   </div>
