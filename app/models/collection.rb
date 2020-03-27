@@ -1,5 +1,6 @@
 class Collection < ApplicationRecord
-  has_many :articles
+  has_many :collection_articles
+  has_many :articles, through: :collection_articles
   belongs_to :user
   belongs_to :organization, optional: true
 
