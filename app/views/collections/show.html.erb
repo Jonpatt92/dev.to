@@ -1,0 +1,23 @@
+<div class="home">
+
+  <div class="item-list-container" id="collections-index">
+    <div class="side-bar">
+    </div>
+    <div class="items-container">
+      <div class="results results--loaded">
+        <div class="results-header">
+          <%= @collection.title %>
+        </div>
+        <% @collection.articles.each do |article| %>
+          <div class="item-wrapper">
+            <a class="item" href="/<%= article.canonical_url %>">
+              <div class="item-title">
+                <%= article.title %>
+              </div>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
