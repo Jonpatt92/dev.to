@@ -132,6 +132,17 @@
           @include themeable(color, theme-secondary-color, $medium-gray);
           @include themeable(border-color, theme-secondary-color, $medium-gray);
         }
+
+        .collection-add-button {
+          background-color: #66e2d5;
+          position: absolute;
+          bottom: 14px;
+          right: 40px;
+          padding: 10px;
+          font-size: 17px;
+          font-weight: bold;
+          border: 2px solid $black;
+        }
       }
 
       .item {
