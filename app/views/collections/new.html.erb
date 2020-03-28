@@ -1,0 +1,18 @@
+
+<div class="home">
+  <div class="item-list-container" id="collections-new">
+    <div class="side-bar">
+    </div>
+    <div class="items-container">
+      <%= form_tag "/#{current_user.username}/collections", method: :post do %>
+        <%= label_tag :title %>
+        <%= text_field_tag :title %><br>
+
+        <%= label_tag :description %>
+        <%= text_area_tag :description %><br>
+
+        <%= submit_tag "Save" %>
+      <% end %>
+    </div>
+  </div>
+</div>
