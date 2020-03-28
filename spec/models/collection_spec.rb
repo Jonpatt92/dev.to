@@ -7,8 +7,8 @@ RSpec.describe Collection, type: :model do
   describe "validations" do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:organization).optional }
-    it { is_expected.to have_many(:articles) }
-
+    it { is_expected.to have_many(:articles).through(:collection_articles) }
+    it { is_expected.to have_many(:collection_articles) }
     it { is_expected.to validate_presence_of(:user_id) }
     it { is_expected.to validate_presence_of(:slug) }
     it { is_expected.to validate_uniqueness_of(:slug).scoped_to(:user_id) }
