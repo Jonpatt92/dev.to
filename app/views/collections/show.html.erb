@@ -1,32 +1,27 @@
+<% title "Collection Show" %>
+
 <div class="home">
 
-  <div class="item-list-container" id="collections-index">
+  <div class="item-list-container" id="collections-show">
     <div class="side-bar">
     </div>
     <div class="items-container">
       <div class="results results--loaded">
         <div class="results-header">
-          <%= @collection.title %>
+          <%= @collection.slug %>
         </div>
         <% @collection.articles.each do |article| %>
-          <div class="item-wrapper">
-            <a class="item" href="/<%= article.user.username %>/<%= article.user.slug %>">
-              <div class="item-title">
-                <%= article.title %>
-              </div>
+          <div class="item-wrapper" id="collections-article-item">
+            <a class="item" href="/<%= article.username %>/<%= article.slug %>">
+              <div class="item-title"><%= article.title %></div>
               <div class="item-details">
-                <a class="item-user" href="/<%= article.user.username %>">
-                  <%= article.user.username %>
+                  <%= article.username %>・
+                  <%= article.created_at.strftime("%B %d") %>・
                   <%= article.reading_time %> min read
-                </a>
                 <% if article.tags.length > 0 %>
-                  <span class="item-tags">
-                    <% article.tags.each do |tag| %>
-                      <a class="item-tag" href="/t/<%= tag %>">
-                        #<%= tag %>
-                      </a>
-                    <% end %>
-                  </span>
+                  <% article.tags.each do |tag| %>
+                    ・#<%= tag %>
+                  <% end %>
                 <% end %>
               </div>
             </a>
