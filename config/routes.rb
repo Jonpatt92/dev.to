@@ -402,15 +402,16 @@ Rails.application.routes.draw do
 
   get "/:username/:slug/:view" => "stories#show",
       :constraints => { view: /moderate/ }
-  get "/:username/:slug/mod" => "moderations#article"
-  get "/:username/:slug/manage" => "articles#manage"
-  get "/:username/:slug/edit" => "articles#edit"
+  get "/:username/:slug/mod"            => "moderations#article"
+  get "/:username/:slug/manage"         => "articles#manage"
+  get "/:username/:slug/edit"           => "articles#edit"
   get "/:username/:slug/delete_confirm" => "articles#delete_confirm"
-  get "/:username/:slug/stats" => "articles#stats"
+  get "/:username/:slug/stats"          => "articles#stats"
   get "/:username/:view" => "stories#index",
       :constraints => { view: /comments|moderate|admin/ }
-  get "/:username/:slug" => "stories#show"
-  get "/:username" => "stories#index"
+  get "/:username/:slug"                => "stories#show"
+  get "/:username"                      => "stories#index"
+  get "/:username/collections/:id"      => "collections#show"
 
   root "stories#index"
 end

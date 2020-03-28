@@ -1,0 +1,33 @@
+<% title "Collection Show" %>
+
+<div class="home">
+
+  <div class="item-list-container" id="collections-show">
+    <div class="side-bar">
+    </div>
+    <div class="items-container">
+      <div class="results results--loaded">
+        <div class="results-header">
+          <%= @collection.slug %>
+        </div>
+        <% @collection.articles.each do |article| %>
+          <div class="item-wrapper" id="collections-article-item">
+            <a class="item" href="/<%= article.username %>/<%= article.slug %>">
+              <div class="item-title"><%= article.title %></div>
+              <div class="item-details">
+                  <%= article.username %>・
+                  <%= article.created_at.strftime("%B %d") %>・
+                  <%= article.reading_time %> min read
+                <% if article.tags.length > 0 %>
+                  <% article.tags.each do |tag| %>
+                    ・#<%= tag %>
+                  <% end %>
+                <% end %>
+              </div>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
