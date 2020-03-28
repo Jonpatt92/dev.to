@@ -14,6 +14,21 @@
               <div class="item-title">
                 <%= article.title %>
               </div>
+              <div class="item-details">
+                <a class="item-user" href="/<%= article.user.username %>">
+                  <%= article.user.username %>
+                  <%= article.reading_time %> min read
+                </a>
+                <% if article.tags.length > 0 %>
+                  <span class="item-tags">
+                    <% article.tags.each do |tag| %>
+                      <a class="item-tag" href="/t/<%= tag %>">
+                        #<%= tag %>
+                      </a>
+                    <% end %>
+                  </span>
+                <% end %>
+              </div>
             </a>
           </div>
         <% end %>
