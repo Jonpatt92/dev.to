@@ -29,7 +29,7 @@
           Your Collections
         </div>
         <div class="item-wrapper">
-          <%= button_to "[+] Add Collection", "/", class: "collection-add-button" %>
+          <%= button_to "[+] Add Collection", "/#{current_user.username}/collections/new", method: :get, class: "collection-add-button" %>
         </div>
         <% @collections.each do |collection| %>
           <div class="item-wrapper" id="collections-item">
