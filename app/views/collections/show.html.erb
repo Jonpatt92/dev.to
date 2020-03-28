@@ -10,7 +10,7 @@
         </div>
         <% @collection.articles.each do |article| %>
           <div class="item-wrapper">
-            <a class="item" href="/<%= article.canonical_url %>">
+            <a class="item" href="/<%= article.user.username %>/<%= article.user.slug %>">
               <div class="item-title">
                 <%= article.title %>
               </div>
