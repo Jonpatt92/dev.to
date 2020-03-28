@@ -28,14 +28,14 @@
         <div class="results-header">
           Your Collections
         </div>
-        <% @collections.each do |collection| %>
         <div class="item-wrapper">
-          <%= button_to "[+] Add Collection", "/", class: "collection-add-button" %>
+          <%= button_to "[+] Add Collection", "/#{current_user.username}/collections/new", method: :get, class: "collection-add-button" %>
         </div>
+        <% @collections.each do |collection| %>
           <div class="item-wrapper" id="collections-item">
             <a class="item" href="/<%= current_user.username %>/collections/<%= collection.id %>%">
               <div class="item-title">
-                <%= collection.slug %>
+                <%= collection.title %>
               </div>
             </a>
           </div>

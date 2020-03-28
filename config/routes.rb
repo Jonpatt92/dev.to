@@ -411,7 +411,9 @@ Rails.application.routes.draw do
       :constraints => { view: /comments|moderate|admin/ }
   get "/:username/:slug"                => "stories#show"
   get "/:username"                      => "stories#index"
-  get "/:username/collections/:id"      => "collections#show"
+  get "/:username/collections/new"      => "collections#new"
+  post "/:username/collections" => "collections#create"
+  get "/:username/collections/:id" => "collections#show"
 
   root "stories#index"
 end
