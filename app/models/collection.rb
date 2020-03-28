@@ -5,6 +5,7 @@ class Collection < ApplicationRecord
   belongs_to :organization, optional: true
 
   validates :user_id, presence: true
+  validates :title, presence: true
   validates :slug, presence: true, uniqueness: { scope: :user_id }
 
   after_touch :touch_articles
