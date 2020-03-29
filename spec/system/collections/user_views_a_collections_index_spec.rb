@@ -4,7 +4,8 @@ RSpec.describe "Collections Index", type: :system do
   let!(:user) { create(:user) }
 
   before do
-    create_list(:collection, 2, user_id: user.id)
+    create(:collection, user_id: user.id, title: "Example 1")
+    create(:collection, user_id: user.id, title: "Example 2")
     sign_in user
   end
 
