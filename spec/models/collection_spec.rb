@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Collection, type: :model do
   let_it_be(:user) { create(:user) }
-  let_it_be(:collection) { create(:collection, :with_articles, user: user) }
+  let_it_be(:collection) { create(:collection, :with_articles, user: user, title: "Example Collection Title") }
 
   describe "validations" do
     it { is_expected.to belong_to(:user) }
