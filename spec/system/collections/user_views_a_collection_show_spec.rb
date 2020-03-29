@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Collections Show", type: :system do
   let!(:user) { create(:user) }
-  let!(:collection) { create(:collection, user_id: user.id) }
+  let!(:collection) { create(:collection, user_id: user.id, title: "Test Collection Example") }
 
   before do
     create(:article) # extra article for sad path
